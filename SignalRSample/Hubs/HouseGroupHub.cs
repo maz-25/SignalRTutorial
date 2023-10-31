@@ -17,12 +17,12 @@ namespace SignalRSample.Hubs
                 {
                     if (str.Contains(Context.ConnectionId))
                     {
-                        houseList += str.Split(':')[1] + " ";
+                        houseList += str.Split(':')[1] + " "; // svi idijevi iz GroupsJoined
                     }
                 }
 
                 await Clients.Caller.SendAsync("subscriptionStatus", houseList, houseName.ToLower(), true);
-                await Clients.Others.SendAsync("newMemberAddedToHouse", houseName);
+                await Clients.Others.SendAsync("newMemberAddedToHouse", houseName);  //šalji svima ostalima da je novi member subscribean
                 await Groups.AddToGroupAsync(Context.ConnectionId, houseName);
             }
         }
@@ -38,7 +38,7 @@ namespace SignalRSample.Hubs
                 {
                     if (str.Contains(Context.ConnectionId))
                     {
-                        houseList += str.Split(':')[1] + " ";
+                        houseList += str.Split(':')[1] + " "; // svi idijevi iz GroupsJoined
                     }
                 }
 
@@ -49,7 +49,7 @@ namespace SignalRSample.Hubs
         }
         public async Task TriggerHouseNotify(string houseName)
         {
-            await Clients.Group(houseName).SendAsync("triggerHouseNotification", houseName);
+            await Clients.Group(houseName).SendAsync("triggerHouseNotification", houseName); //šalji notifikacije samo onima koji su se subscribeali na tu kuću
         }
     }
 }

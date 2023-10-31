@@ -1,4 +1,4 @@
-﻿
+﻿//establishing connection
 var connectionNotification = new signalR.HubConnectionBuilder()
     .withUrl("/hubs/notification").build();
 
@@ -15,6 +15,7 @@ connectionNotification.on("LoadNotification", function (message, counter) {
     }
 });
 
+// na click pozovi SendMessage
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var message = document.getElementById("notificationInput").value;
     connectionNotification.send("SendMessage", message).then(function () {
@@ -23,7 +24,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     event.preventDefault();
 });
 
-
+//ako je komunikacija uspostavljena enablaj sendButton
 connectionNotification.start().then(function () {
     connectionNotification.send("LoadMessages")
     document.getElementById("sendButton").disabled = false;
