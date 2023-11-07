@@ -4,9 +4,9 @@ namespace SignalRSample.Hubs
 {
     public class HouseGroupHub : Hub
     {
-        public static List<string> GroupsJoined { get; set; } = new List<string>();
+        public static List<string> GroupsJoined { get; set; } = new List<string>(); //sami kreiramo grupu
 
-        public async Task JoinHouse(string houseName)
+        public async Task JoinHouse(string houseName) //houseName je ime grupe koju šaljemo
         {
             if (!GroupsJoined.Contains(Context.ConnectionId+":"+houseName))
             {

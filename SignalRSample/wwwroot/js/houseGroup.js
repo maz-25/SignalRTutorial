@@ -21,6 +21,7 @@ var connectionHouse = new signalR.HubConnectionBuilder()
     //.configureLogging(signalR.LogLevel.Information)
     .withUrl("/hubs/houseGroup").build();
 
+    //pozivanje metode kada se klikne određeni gumb
 btn_gryffindor.addEventListener("click", function (event) {
     connectionHouse.send("JoinHouse", "Gryffindor");
     event.preventDefault();
@@ -90,6 +91,7 @@ connectionHouse.on("newMemberRemovedFromHouse", (houseName) => {
 connectionHouse.on("subscriptionStatus", (strGroupsJoined, houseName, hasSubscribed) => {
     lbl_houseJoined.innerText = strGroupsJoined;
 
+    //ovo je za togglanje buttona
     if (hasSubscribed) {
         //subscribe to
 

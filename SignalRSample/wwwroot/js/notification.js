@@ -4,6 +4,7 @@ var connectionNotification = new signalR.HubConnectionBuilder()
 
 document.getElementById("sendButton").disabled = true;
 
+//prikazivanje svih notifikacija 
 connectionNotification.on("LoadNotification", function (message, counter) {
     document.getElementById("messageList").innerHTML = "";
     var notificationCounter = document.getElementById("notificationCounter");

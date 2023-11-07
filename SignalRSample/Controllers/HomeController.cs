@@ -59,11 +59,11 @@ namespace SignalRSample.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> DeathlyHallows(string type)
+        public async Task<IActionResult> DeathlyHallows(string type) // tu dobiva tip za kojeg će glasati
         {
-            if (SD.DealthyHallowRace.ContainsKey(type))
+            if (SD.DealthyHallowRace.ContainsKey(type)) //ako type postoji u dictionariju (wand, cloak, stone)
             {
-                SD.DealthyHallowRace[type]++;
+                SD.DealthyHallowRace[type]++; //povećaj counter za taj key
             }
             await _deathlyHub.Clients.All.SendAsync("updateDealthyHallowCount",
                 SD.DealthyHallowRace[SD.Cloak],

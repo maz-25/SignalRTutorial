@@ -6,11 +6,13 @@ var connectionUserCount = new signalR.HubConnectionBuilder()
     .withUrl("/hubs/userCount", signalR.HttpTransportType.WebSockets).build();
 
 //connect to methods that hub invokes aka receive notfications from hub
+//value je TotalViewsCounter koji smo proslijedili preko huba
 connectionUserCount.on("updateTotalViews", (value) => {
     var newCountSpan = document.getElementById("totalViewsCounter");
     newCountSpan.innerText = value.toString();
 });
 
+//potreban nam je novi connection za broj usera 
 connectionUserCount.on("updateTotalUsers", (value) => {
     var newCountSpan = document.getElementById("totalUsersCounter");
     newCountSpan.innerText = value.toString();
@@ -22,6 +24,7 @@ function newWindowLoadedOnClient() {
 }
 
 //start connection
+//ovo se događa kad je konekcija uspostavljena
 function fulfilled() {
     //do something on start
     console.log("Connection to User Hub Successful");

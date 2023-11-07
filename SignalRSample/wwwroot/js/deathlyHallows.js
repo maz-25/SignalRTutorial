@@ -20,6 +20,7 @@ connectionDeathlyHallows.on("updateDealthyHallowCount", (cloak, stone, wand) => 
 //invoke hub methods aka send notification to hub
 
 //start connection
+//ovdje staviš metode koje želiš da ti se pozovu čim se establisha konekcija
 function fulfilled() {
     connectionDeathlyHallows.invoke("GetRaceStatus").then((raceCounter) => {
         cloakSpan.innerText = raceCounter.cloak.toString();

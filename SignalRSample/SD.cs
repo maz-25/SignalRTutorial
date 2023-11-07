@@ -1,5 +1,7 @@
 ﻿namespace SignalRSample
 {
+    //static details for race voting, on je to napravio zato što želi spremit glasove kao konstante u ovu klasu
+    //glasanje preko urla, spremljene u dictionary
     public static class SD
     {
         static SD()
